@@ -121,8 +121,10 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     final contato = snapshot.data![index];
                     return ListTile(
-                      title: Text(contato['nome']),
-                      subtitle: Text(contato['email']),
+                      title: Text(contato['nome'],
+                      style: TextStyle(color: Colors.white),),
+                      subtitle: Text(contato['email'],
+                      style: TextStyle(color: Colors.white)),
                     );
                   },
                 );
@@ -182,14 +184,24 @@ class _CreateContatoTabState extends State<CreateContatoTab> {
             TextFormField(
               cursorColor: Colors.white,
               decoration: const InputDecoration(
+                  errorStyle: TextStyle(color: Colors.lightBlue),
                   labelText: 'Nome',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
                     borderSide:
                         BorderSide(color: Colors.white), // Linha inativa
                   ),
+                  focusedErrorBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.lightBlue),
+                     // Linha ativa
+                  ),
+                  errorBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.lightBlue),
+                     // Linha ativa
+                  ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white), // Linha ativa
+                    borderSide: BorderSide(color: Colors.white),
+                     // Linha ativa
                   )),
               style: const TextStyle(color: Colors.white),
               validator: (value) =>
@@ -199,11 +211,20 @@ class _CreateContatoTabState extends State<CreateContatoTab> {
             TextFormField(
               cursorColor: Colors.white,
               decoration: const InputDecoration(
+                  errorStyle: TextStyle(color: Colors.lightBlue),
                   labelText: 'Email',
                   labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
                     borderSide:
                         BorderSide(color: Colors.white), // Linha inativa
+                  ),
+                  focusedErrorBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.lightBlue),
+                     // Linha ativa
+                  ),
+                  errorBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.lightBlue),
+                     // Linha ativa
                   ),
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.white), // Linha ativa
@@ -274,18 +295,31 @@ class _EditDeleteContatoTabState extends State<EditDeleteContatoTab> {
 
             return ListTile(
               title: TextField(
+                cursorColor: Colors.white,
                 controller: nomeController,
-                decoration: const InputDecoration(labelText: 'Nome'),
+                decoration: const InputDecoration(labelText: 'Nome',
+                labelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.white), // Linha inativa
+                  ),),
+                  style: const TextStyle(color: Colors.white),
               ),
               subtitle: TextField(
                 controller: emailController,
-                decoration: const InputDecoration(labelText: 'Email'),
+                decoration: const InputDecoration(labelText: 'Email',
+                labelStyle: TextStyle(color: Colors.white),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide:
+                        BorderSide(color: Colors.white), // Linha inativa
+                  ),),
+                  style: const TextStyle(color: Colors.white),
               ),
               trailing: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.save),
+                    icon: const Icon(Icons.save, color: Colors.white,),
                     onPressed: () {
                       widget.onEditContato(
                         contato['id'],
@@ -293,16 +327,17 @@ class _EditDeleteContatoTabState extends State<EditDeleteContatoTab> {
                         emailController.text,
                       );
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Contato atualizado!')),
+                        const SnackBar(content: Text('Contato atualizado!'), backgroundColor: Colors.lightBlueAccent,),
+                        
                       );
                     },
                   ),
                   IconButton(
-                    icon: const Icon(Icons.delete),
+                    icon: const Icon(Icons.delete, color: Colors.white,),
                     onPressed: () {
                       widget.onDeleteContato(contato['id']);
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Contato excluído!')),
+                        const SnackBar(content: Text('Contato excluído!'), backgroundColor: Colors.lightBlueAccent,),
                       );
                     },
                   ),
